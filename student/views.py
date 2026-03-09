@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from student.models import Student                                   # student app se model le ker aao "Student" name ka 
 # Create your views here.
 
@@ -8,14 +9,16 @@ from student.models import Student                                   # student a
 def student_home(request):
     
     students_data = Student.objects.all()                                                            # students_data => variable , Student => models, now database se value aygi jo ki html me pass hogi
-    print(students_data)                                                                                           # all the object from admin site (models object) it will fill in student_data variable , These are called Data Fetching   
+                                                                                             # all the object from admin site (models object) it will fill in student_data variable , These are called Data Fetching , also called query set  
     
     data ={
         "student_data": students_data             
     }
     
+    # "student_data" => key -> variable , = students_data => value -> variables where all the model stored
     
-    return render(request, "student/student_home.html", data)                    # data => dictionary which render the data in html
+    
+    return render(request, "student/student_home.html", data)                    # data => only dictionary which render the data in html
 
 
     
@@ -46,7 +49,10 @@ def add_student(request):                                                  #  by
                 
             )
             
-            return redirect("student_home")
+            messages.success(request, "Student Added Successfully ✅")
+            
+            return redirect("student_home")                          # form karte hi condition break and submit directly student_home page
+                                                                    # student_home search karega to urls.py me jayga waha name match karega usme std url dekhega fir function call hogi views karayga student_home fir waps views me ayga student_home view kra dega sare models ko webpage per
         return render(request, "student/add_student.html")
 
 
@@ -57,10 +63,47 @@ def add_student(request):                                                  #  by
     
     # MOST IMPORTANT :- add token after the form tag in html  
 
-    # NOW next step:-   put the input data in data base (admin) 
+    # NOW next step:-   put the input-data in database (admin/model) 
     
             # Student.objects.create() => Student (model) -> create objects
-            # name,email,phone_number => models
+            # name,email,phone_number => models.py me ja ke dekh lo 
             # student_name, student_email, student_phone_number => input value jo uper store hui hai
-            
-            
+
+
+# DELETE :
+
+
+           
+def delete_student(request, student_id):
+     
+    my_student= Student.objects.get(id = student_id)       # model ke object se id laao aur check kro ye kya student_id ke equal hai, then delete it
+    
+    my_student.delete()
+    
+    messages.error(request, "Student Deleted Successfully ❌")
+
+    return redirect('student_home')
+
+# UPDATE :
+
+def update_student(request, student_id):
+    student = Student.objects.get(id = student_id)
+    
+    if request.method =="POST":
+        
+        student.name =request.POST.get("name")
+        student.email = request.POST.get("email")
+        student.phone_number = request.POST.get("phone")    # student.email => student = jo uper variable hai , email = model ; yaha update ka kam ho rha hai 
+        
+        student.save()
+        
+        messages.success(request, "Student Updated Successfully ✅")
+        
+        
+        return redirect('student_home')    
+    
+    parameters={
+        "student" : student
+    }
+    
+    return render(request, "student/update_student.html", parameters)

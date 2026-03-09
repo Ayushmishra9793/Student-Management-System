@@ -7,3 +7,6 @@ urlpatterns = [
     path("", include("home.urls")),
     path("student/", include("student.urls")),
 ]
+
+
+# jaise hi student/ likha ho url me vo student(app) ke urls se fetch kare 
