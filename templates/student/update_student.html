@@ -13,9 +13,27 @@
             Update Student
         </h2>
 
-        <form  method="POST" class="space-y-4">
+        <form  method="POST" class="space-y-4" enctype="multipart/form-data">
 
             {% csrf_token %}
+
+            <div class="text-center">
+
+                <label class="block font-medium mb-2">Student Profile</label>
+
+                {% if student.student_profile %}
+                <img 
+                src="{{ student.student_profile.url }}"
+                class="w-24 h-24 rounded-full object-cover mx-auto mb-3 border-4 border-yellow-400">
+                {% else %}
+                <img 
+                src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQArgMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAUBAwYCB//EADIQAAICAQIDBgIKAwAAAAAAAAABAgMEBRESITETIkFRYXFSgRQjMkJDgqGxweEzYnL/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A+vgAqAAAAAAAAAAey/sADXK+mP2rYL8xmNtUvs2QftJAewAAAAAAAAAAAAAAAAAAAAA822wphx2yUY+bZ4ysivGplZY36JeLOdysmzKs47H7JdEBOytXm2440VFfFLqV1t1lr3snKXuzwC4AAGDdTl30veu2S28PAtMTVoWbRyFwP410KUDB1qaa3TTT6NA5/T8+WK+GfeqfVfD7F/GUZRUovdNbp+ZBkAAAAAAAAAAAAAH7eYImqXdjiS2ezn3QKfUcp5OQ2n3I8or+SKYXQyUAAAAAAAAC20XKfE8eb5PnB+T8ipPVc3XZGcesXuhR1YPNU1ZXGa6SW56IAAAAAAAAAAAFRr0udEfdluU2vf5aX/qwKsAFAAAAAAAAAACjotJlxYFe/huv1JZB0ZbYMf8Apk4gAAAAAAAAAAAVmu1t1VWJcoyafzLM1ZVKvx51eMly9wOXBmUXCTjJbNPZmCgAAAAAAAAAb8Gh5GTCH3d95ewovtPrdWFVF9dt38+ZIC2S5dAQAAAAAAAAAAAAAFTrGG3vk1xbf30v3Kg630fRlPn6W93birdb84eXsBVAy002mtmjBQAAAA9VVzus4K4uUn4IDyk20km230R0Om4n0Wp8f+SXX0XkeNP06OOu0t2lb5+EfYnkAAAAAAAAAAAAAAI2Zm14q774pvpBfyadS1BY/wBVVzta5t/d/sopSlKTlJtyfVsCatVye27RtcHTg8C3xcynKXcltPbnF9Uc0E2nvFuL80UdNk4lGSvrId74lyZX26K/wrvlJGijVcipKM9rI+vUm16xjy5ThOH6oggvScpdFCX5j1HR8lvm4L57lmtSxJfjbe6aMS1PEXS1v2iwI1Wj1xe91jn6RWxYU010w4a4qMSBbrNaX1dcpPzfIr8nUMi/k58EfKHIC1zdSqo3hU1Ozy8F7kDH1W+Fj7Z9pFvdrxXsV4KOpovqyIKdUt14rxRsOWx77Mezjqez8fU6HCy4ZVXFFbSX2o+RKJAAAAAAAABE1LM+i07J/WyXd9PUk2TjXBzm9klu2czlXyyLnbPx6LyQGttybcnu2992YAKAAAAAAAAAAAAAAbMe+eParK3zXX1RrAHU490MiqNsOj6ryZsKDSMrscjs5vuWcvZl+QAAAAAFZrt/BVGiL5z5y9il8STqdva5trXNRfDHf0IxQAAAAAAAAAAAAAAAAAAA6XAv+kYsJt95LaXujmi10K19pZS+jXEiUXAAAGG9k35IADlJPeTb67mACgAAAAAAAAAAAAAAAAAABL0ptZ1e3in+wAHRLoACD//Z"
+                class="w-24 h-24 rounded-full object-cover mx-auto mb-3 border-4 border-yellow-400">
+                {% endif %}
+
+                <input type="file" name="student_profile" class="mx-auto block text-sm text-center">
+
+            </div>
 
             <!-- Name -->
             <div>

@@ -41,11 +41,13 @@ def add_student(request):                                                  #  by
             student_name = request.POST.get("input_name")
             student_email = request.POST.get("input_email")
             student_phone_number = request.POST.get("input_phone_number")
+            student_profile_image = request.FILES.get("input_profile")       # user to upload a profile picture, Handle request.FILES in views.py
             
             Student.objects.create(
                 name = student_name,
                 email = student_email,
-                phone_number =student_phone_number
+                phone_number =student_phone_number,
+                student_profile = student_profile_image
                 
             )
             
@@ -94,7 +96,9 @@ def update_student(request, student_id):
         student.name =request.POST.get("name")
         student.email = request.POST.get("email")
         student.phone_number = request.POST.get("phone")    # student.email => student = jo uper variable hai , email = model ; yaha update ka kam ho rha hai 
-        
+        if request.FILES.get("student_profile"):
+            student.student_profile = request.FILES.get("student_profile")
+            
         student.save()
         
         messages.success(request, "Student Updated Successfully ✅")

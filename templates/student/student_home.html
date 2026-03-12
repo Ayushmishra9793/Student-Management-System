@@ -34,44 +34,59 @@
     </div>
 
     <!-- Cards Section -->
-    <div class="max-w-6xl mx-auto mt-6 grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 px-4">
+<div class="max-w-6xl mx-auto mt-20 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 px-4">
 
-        <!-- for loop  -->
-
-        {% for student in student_data %}
-
+{% for student in student_data %}
+    <div class="bg-white rounded-2xl shadow-lg pt-16 pb-6 px-6 text-center relative hover:shadow-xl transition duration-300">
         
+           <!-- Floating Profile Image -->
+            <div class="absolute -top-12 left-1/2 transform -translate-x-1/2">
 
-        <!-- Student Card 1 -->
-        <div class="bg-white rounded-xl shadow-md p-6 hover:shadow-xl transition duration-300">
+                {% if student.student_profile %}
+                <img src="{{ student.student_profile.url }}"
+                class="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover">
+                {% else %}
+                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQArgMBIgACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAAABAUBAwYCB//EADIQAAICAQIDBgIKAwAAAAAAAAABAgMEBRESITETIkFRYXFSgRQjMkJDgqGxweEzYnL/xAAVAQEBAAAAAAAAAAAAAAAAAAAAAf/EABYRAQEBAAAAAAAAAAAAAAAAAAABEf/aAAwDAQACEQMRAD8A+vgAqAAAAAAAAAAey/sADXK+mP2rYL8xmNtUvs2QftJAewAAAAAAAAAAAAAAAAAAAAA822wphx2yUY+bZ4ysivGplZY36JeLOdysmzKs47H7JdEBOytXm2440VFfFLqV1t1lr3snKXuzwC4AAGDdTl30veu2S28PAtMTVoWbRyFwP410KUDB1qaa3TTT6NA5/T8+WK+GfeqfVfD7F/GUZRUovdNbp+ZBkAAAAAAAAAAAAAH7eYImqXdjiS2ezn3QKfUcp5OQ2n3I8or+SKYXQyUAAAAAAAAC20XKfE8eb5PnB+T8ipPVc3XZGcesXuhR1YPNU1ZXGa6SW56IAAAAAAAAAAAFRr0udEfdluU2vf5aX/qwKsAFAAAAAAAAAACjotJlxYFe/huv1JZB0ZbYMf8Apk4gAAAAAAAAAAAVmu1t1VWJcoyafzLM1ZVKvx51eMly9wOXBmUXCTjJbNPZmCgAAAAAAAAAb8Gh5GTCH3d95ewovtPrdWFVF9dt38+ZIC2S5dAQAAAAAAAAAAAAAFTrGG3vk1xbf30v3Kg630fRlPn6W93birdb84eXsBVAy002mtmjBQAAAA9VVzus4K4uUn4IDyk20km230R0Om4n0Wp8f+SXX0XkeNP06OOu0t2lb5+EfYnkAAAAAAAAAAAAAAI2Zm14q774pvpBfyadS1BY/wBVVzta5t/d/sopSlKTlJtyfVsCatVye27RtcHTg8C3xcynKXcltPbnF9Uc0E2nvFuL80UdNk4lGSvrId74lyZX26K/wrvlJGijVcipKM9rI+vUm16xjy5ThOH6oggvScpdFCX5j1HR8lvm4L57lmtSxJfjbe6aMS1PEXS1v2iwI1Wj1xe91jn6RWxYU010w4a4qMSBbrNaX1dcpPzfIr8nUMi/k58EfKHIC1zdSqo3hU1Ozy8F7kDH1W+Fj7Z9pFvdrxXsV4KOpovqyIKdUt14rxRsOWx77Mezjqez8fU6HCy4ZVXFFbSX2o+RKJAAAAAAAABE1LM+i07J/WyXd9PUk2TjXBzm9klu2czlXyyLnbPx6LyQGttybcnu2992YAKAAAAAAAAAAAAAAbMe+eParK3zXX1RrAHU490MiqNsOj6ryZsKDSMrscjs5vuWcvZl+QAAAAAFZrt/BVGiL5z5y9il8STqdva5trXNRfDHf0IxQAAAAAAAAAAAAAAAAAAA6XAv+kYsJt95LaXujmi10K19pZS+jXEiUXAAAGG9k35IADlJPeTb67mACgAAAAAAAAAAAAAAAAAABL0ptZ1e3in+wAHRLoACD//Z"
+                class="w-24 h-24 rounded-full border-4 border-white shadow-md object-cover">
+                {% endif %}
+
+            </div>
+
+            <!-- Student Card 1 -->
+        
             <!-- <h2 class="text-xl font-semibold mb-2">{{name}}</h2>   -->
             
             <!-- views.py se data aa rha hai html me {data me dic hai variable -> name , email } {{name}} variable jo ki data me hai ab use ker rhe usse   its called JINJA 
                  html me varibles(key) hi chahiye hote hai key ke bisis per value show karega    -->
-             
-            <h2 class="text-xl font-semibold mb-2">{{student.name}}</h2>  
-            <p class="text-gray-600"><strong>Email: </strong> {{student.email}}</p>
-            <p class="text-gray-600 mb-4"><strong>Phone:</strong> {{student.phone_number}} </p>
+           
+            <h2 class="text-xl font-semibold mb-2">{{student.name}}</h2>
+            <p class="text-gray-600"><strong>Email:</strong> {{student.email}}</p>
+            <p class="text-gray-600 mb-4"><strong>Phone:</strong> {{student.phone_number}}</p>
 
             {% comment %}
             <!--  hum for loop laga ke data base se exact value yaha le ker aa rhe hai {{loop variable.model-property/attribute}} -->
 
             {% endcomment %}
 
-            <div class="flex justify-between">
-                <button class="bg-blue-500 hover:bg-blue-600 text-white px-3 py-1 rounded-md">View</button>
-                <a href="{% url 'update_student' student.id %}" class="bg-yellow-500 hover:bg-yellow-600 text-white px-3 py-1 rounded-md">Update</a>
+            <div class="flex justify-center gap-3">
+                <button class="bg-blue-500 text-white px-3 py-1 rounded-md">View</button>
+
+                <a href="{% url 'update_student' student.id %}"
+                class="bg-yellow-500 text-white px-3 py-1 rounded-md">
+                Update
+                </a>
+
                 <a href="{% url 'delete_student' student.id %}"
-                    onclick="return confirm('Are you sure you want to delete this student?')"
-                    class="bg-red-500 text-white px-4 py-2 rounded">
-                    Delete
+                onclick="return confirm('Are you sure you want to delete this student?')"
+                class="bg-red-500 text-white px-3 py-1 rounded-md">
+                Delete
                 </a>
             </div>
-        </div>
-
-    {% endfor %}    
         
     </div>
+ {% endfor %}    
+        
+  
 
  <script>
             let notification = document.getElementById("notification");
